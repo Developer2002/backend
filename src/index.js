@@ -1,10 +1,11 @@
 const express = require('express')
 const mongoose = require('mongoose')
+require('dotenv/config')
 
 const app = express()
 
 mongoose.connect(
-  'mongodb+srv://admin:admin@cluster0-wkslz.mongodb.net/test?retryWrites=true&w=majority',
+  process.env.MONGOOSE_URL,
   {
     useNewUrlParser: true
   }
@@ -14,6 +15,6 @@ app.use(express.json())
 
 require('./controllers/authController')(app)
 require('./controllers/cardController')(app)
-require('./controllers/dataController')(app)
+require('./controllers/cashController')(app)
 
 app.listen(process.env.PORT || 3333)

@@ -25,4 +25,4 @@ router.post('/addcash/:id', async (req, res) => {
   }
 })
 
-module.exports = app => app.use('/data', router)
+module.exports = app => app.use('/cash', router)

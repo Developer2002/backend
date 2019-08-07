@@ -15,10 +15,10 @@ function generateToken (params = {}) {
 }
 
 router.post('/register', async (req, res) => {
-  const { email } = req.body
+  const { name } = req.body
 
   try {
-    if (await User.findOne({ email })) {
+    if (await User.findOne({ name })) {
       return res.status(400).send({ error: 'User already exists' })
     }
 
@@ -34,9 +34,9 @@ router.post('/register', async (req, res) => {
 })
 
 router.post('/authenticate', async (req, res) => {
-  const { email, password } = req.body
+  const { name, password } = req.body
 
-  const user = await User.findOne({ email }).select('+password')
+  const user = await User.findOne({ name }).select('+password')
 
   if (!user) { return res.status(400).send({ error: 'User not found' }) }
 
